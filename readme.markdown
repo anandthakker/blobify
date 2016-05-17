@@ -52,7 +52,7 @@ contain output from the worker:
 # methods
 
 ``` js
-var work = require('webworkify')
+var work = require('webworkify'[, options])
 ```
 
 ## var w = work(require(modulePath))
@@ -69,6 +69,13 @@ the main thread too so don't put any computationally intensive code in that
 part. It is necessary for the main code to `require()` the worker code to fetch
 the module reference and load `modulePath`'s dependency graph into the bundle
 output.
+
+## var b = work(require(modulePath), {bare: true})
+
+Return a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) from
+the module at `modulePath`.  Doing `var w = new Worker(URL.createObjectURL(b))`
+would create a web worker equivalently to default `work(require(modulePath))`
+with no options.
 
 # install
 
